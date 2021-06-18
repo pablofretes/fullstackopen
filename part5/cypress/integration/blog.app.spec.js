@@ -82,7 +82,7 @@ describe('Blog app', function() {
     })
   })
 
-  describe.only('testing function that sorts by likes', function(){
+  describe('testing function that sorts by likes', function(){
     beforeEach(function(){
       cy.contains('Login').click()
       cy.get('[data-cy=username]').type('testingCypress')

@@ -48,8 +48,3 @@ describe('blog tests', () => {
     expect(mockHandler).toHaveBeenCalledTimes(2)
   })
 })
-
-
-
-
-
