@@ -1,4 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server')
+const { v1: uuid } = require('uuid')
 
 let authors = [
   {
@@ -96,20 +97,30 @@ const typeDefs = gql`
       id: String!
       genres: [String!]
   }
-  
+
+  type Authors {
+      name: String!
+      bookCount: Int!
+  }
+
   type Query {
       bookCount: Int!
       authorCount: Int!
       allBooks: [Book!]!
+      allAuthors: [Authors]
   }
-
 `
 
 const resolvers = {
   Query: {
       bookCount: () => books.length,
       authorCount: () => authors.length,
-      allBooks: () => books
+      allBooks: () => books,
+      allAuthors: () => authors
+  },
+  Authors: {
+    name: (root) => root.name,
+    bookCount: (root) => books.filter(b => b.author === root.name).length 
   }
 }
 
