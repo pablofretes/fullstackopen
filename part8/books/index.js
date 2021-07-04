@@ -130,7 +130,7 @@ const resolvers = {
 
         return books.filter(b => b.author === args.author && b.genres.includes(args.genre))
     },
-      allAuthors: () => books
+      allAuthors: () => authors
   },
   Authors: {
     name: (root) => root.name,
