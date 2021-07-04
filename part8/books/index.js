@@ -133,8 +133,8 @@ const resolvers = {
       allAuthors: () => books
   },
   Authors: {
-      name: (root) => root.author,
-      bookCount: (root) => books.filter(b => b.author === root.author).length
+    name: (root) => root.name,
+    bookCount: (root) => books.filter(b => b.author === root.name).length
   },
 }
 
