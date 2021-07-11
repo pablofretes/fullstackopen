@@ -134,7 +134,7 @@ const resolvers = {
         }
       }
 
-      const book = new Book({ ...args, author: author.id })
+      const book = new Book({ ...args, author: author._id })
 
       try{
         await book.save()
