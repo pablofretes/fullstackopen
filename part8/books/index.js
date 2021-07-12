@@ -49,6 +49,7 @@ const typeDefs = gql`
       allBooks(author: String, genre: String): [Book!]!
       allAuthors: [Author]
       me: User
+      favoriteGenre: String!
   }
 
   type Mutation {
@@ -99,7 +100,8 @@ const resolvers = {
 
         return []
     },
-      allAuthors: () => Author.find({})
+      allAuthors: () => Author.find({}),
+      favoriteGenre: (root, args, { currentUser }) => currentUser.favoriteGenre
   },
   Author: {
     born: (root) => root.born,
