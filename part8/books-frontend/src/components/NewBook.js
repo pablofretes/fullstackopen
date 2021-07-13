@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
-import { ALL_BOOKS, NEW_BOOK, ALL_AUTHORS } from '../queries'
+import { NEW_BOOK } from '../queries'
 import Notification from './Notification'
 
 const NewBook = (props) => {
   const [ createBook ] = useMutation(NEW_BOOK, {
-    refetchQueries: [ { query: ALL_BOOKS }, { query: ALL_AUTHORS } ],
+    update: (store, response) => {
+      props.updateCacheWith(response.data.addBook)
+    },
     onError: (error) => {
       setError(error.message)
       setTimeout(() => {
