@@ -11,11 +11,11 @@ const parseArguments = (args: Array<string>): bmiCalculationValues => {
         return {
             value1: Number(args[2]),
             value2: Number(args[3])
-        }
+        };
     } else {
         throw new Error('Provided numbers were not numbers');
     }
-}
+};
 
 type Result = string | number;
 
@@ -31,7 +31,7 @@ export const bmiCalc = (a: number, b: number): Result => {
     } else {
         return `Your BMI is ${calc} and you are Obese`;
     }
-}
+};
 
 try{
     const { value1, value2 } = parseArguments(process.argv);

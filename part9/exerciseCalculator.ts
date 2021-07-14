@@ -16,23 +16,23 @@ interface exerciseCalculatorValues {
 const parseArgumentsExcersice = (args: Array<string>): exerciseCalculatorValues => {
     if (args.length < 4) throw new Error('Not enough arguments');
 
-    const target = Number(args[args.length - 1])
-    const array = args.slice(2, -1).map((item) => Number(item))
+    const target = Number(args[args.length - 1]);
+    const array = args.slice(2, -1).map((item) => Number(item));
 
     if (!isNaN(target) && !array.some(isNaN)){
         return {
             value1: array,
             value2: target
-        }
+        };
     } else {
         throw new Error('Provided values were not numbers');
     }
-}
+};
 
-const calculateExercises = (array: Array<number>, target: number): ResultsTraining => {
+export const calculateExercises = (array: Array<number>, target: number): ResultsTraining => {
     const sum = array.reduce((counter, item) => {
         return counter + item;
-    }, 0)/array.length
+    }, 0)/array.length;
 
     const isSuccess = () => {
         if(sum >= target){
@@ -40,7 +40,7 @@ const calculateExercises = (array: Array<number>, target: number): ResultsTraini
         } else {
             return false;
         }
-    }
+    };
 
     const ratingNumber = () => {
         if(sum >= target){
@@ -50,7 +50,7 @@ const calculateExercises = (array: Array<number>, target: number): ResultsTraini
         } else {
             return 1;
         }
-    }
+    };
 
     const ratingDescript = () => {
         if(ratingNumber() === 3){
@@ -60,7 +60,7 @@ const calculateExercises = (array: Array<number>, target: number): ResultsTraini
         } else {
             return 'That sucked';
         }
-    }
+    };
     
     return {
         periodLength: array.length,
@@ -70,8 +70,8 @@ const calculateExercises = (array: Array<number>, target: number): ResultsTraini
         success: isSuccess(),
         rating: ratingNumber(),
         ratingDescription: ratingDescript()
-    }
-}
+    };
+};
 
 try{
     const { value1, value2 } = parseArgumentsExcersice(process.argv);
