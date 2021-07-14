@@ -19,7 +19,7 @@ const parseArguments = (args: Array<string>): bmiCalculationValues => {
 
 type Result = string | number;
 
-const bmiCalc = (a: number, b: number): Result => {
+export const bmiCalc = (a: number, b: number): Result => {
     const calc = (b / (a*a)) *10000;
 
     if(calc < 18.5){
