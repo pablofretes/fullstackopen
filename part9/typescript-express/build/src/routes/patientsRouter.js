@@ -9,4 +9,8 @@ const router = express_1.default.Router();
 router.get('/', (_req, res) => {
     res.send(patientsService_1.default.getDataPatientNoSsn());
 });
+router.post('/', (req, res) => {
+    const newPatientEntry = patientsService_1.default.addEntryPatient(req.body);
+    res.json(newPatientEntry);
+});
 exports.default = router;
