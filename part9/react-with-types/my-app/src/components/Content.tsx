@@ -1,9 +1,16 @@
 import React from 'react'
+import { CoursePart } from '../index';
+import Part from '../components/Part';
 
-interface ContentsProps {
-    courseParts: Array<{name: string, exerciseCount: number}>
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+const Content = ({ courseParts }: { courseParts: CoursePart[] }) => {
+    return (
+        <div>
+            {courseParts.map(part => {
+                return <Part key={part.name} part={part}/>
+            })}
+        </div>
+    )
 }
 
-const Content = ({ courseParts }: ContentsProps) => <div>{courseParts.map(p => <p key={p.name}>{p.name} {p.exerciseCount}</p>)}</div>
-
-export default Content
+export default Content;
