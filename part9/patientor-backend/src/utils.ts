@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import { Gender, NewPatient } from "./types/patient";
 
-const toNewPatientEntry = ({name, dateOfBirth, ssn, occupation, gender}: NewPatient): NewPatient => {
+const toNewPatientEntry = ({name, dateOfBirth, ssn, occupation, gender, entry}: NewPatient): NewPatient => {
     const newEntry: NewPatient = {
         name: parseName(name),
         dateOfBirth: parseDateOfBirth(dateOfBirth),
         ssn: parseSsn(ssn),
         occupation: parseOccupation(occupation),
-        gender: parseGender(gender)
+        gender: parseGender(gender),
+        entry: entry
     };
     return newEntry;
 };
