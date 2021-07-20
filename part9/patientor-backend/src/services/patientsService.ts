@@ -5,13 +5,13 @@ import { v1 as uuid } from 'uuid';
 const getDataPatient= (): Patients[] => { return patientsData;};
 
 const getDataPatientNoSsn = (): noSsnPatients[] => { 
-    return patientsData.map(({ id, name, dateOfBirth, gender, occupation, entry }) => ({
+    return patientsData.map(({ id, name, dateOfBirth, gender, occupation, entries }) => ({
         id,
         name,
         dateOfBirth,
         gender,
         occupation,
-        entry
+        entries
     })); 
 };
 

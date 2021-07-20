@@ -1,10 +1,8 @@
+import { Entry } from './diagnose';
+
 export enum Gender {
     Male = 'male',
     Female = 'female',
-}
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Entry {
 }
 
 export interface Patients {
@@ -14,7 +12,7 @@ export interface Patients {
     ssn?: string;
     gender: Gender;
     occupation: string;
-    entry: Entry[];
+    entries?: Entry[];
 }
 
 export type noSsnPatients = Omit<Patients, 'ssn'>;

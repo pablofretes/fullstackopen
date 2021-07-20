@@ -1,15 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import { Gender, NewPatient } from "./types/patient";
 
-const toNewPatientEntry = ({name, dateOfBirth, ssn, occupation, gender, entry}: NewPatient): NewPatient => {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+const toNewPatientEntry = (object: any): NewPatient => {
     const newEntry: NewPatient = {
-        name: parseName(name),
-        dateOfBirth: parseDateOfBirth(dateOfBirth),
-        ssn: parseSsn(ssn),
-        occupation: parseOccupation(occupation),
-        gender: parseGender(gender),
-        entry: entry
+        name: parseName(object.name),
+        dateOfBirth: parseDateOfBirth(object.dateOfBirth),
+        ssn: parseSsn(object.ssn),
+        occupation: parseOccupation(object.occupation),
+        gender: parseGender(object.gender),
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        entries: object.entries
     };
     return newEntry;
 };
