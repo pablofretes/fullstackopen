@@ -7,12 +7,13 @@ const patients_1 = __importDefault(require("../../data/patients"));
 const uuid_1 = require("uuid");
 const getDataPatient = () => { return patients_1.default; };
 const getDataPatientNoSsn = () => {
-    return patients_1.default.map(({ id, name, dateOfBirth, gender, occupation }) => ({
+    return patients_1.default.map(({ id, name, dateOfBirth, gender, occupation, entries }) => ({
         id,
         name,
         dateOfBirth,
         gender,
-        occupation
+        occupation,
+        entries
     }));
 };
 const addEntryPatient = (patient) => {
@@ -20,4 +21,13 @@ const addEntryPatient = (patient) => {
     patients_1.default.push(newPatientEntry);
     return newPatientEntry;
 };
-exports.default = { getDataPatient, getDataPatientNoSsn, addEntryPatient };
+const addDiagnosisEntry = (id, entry) => {
+    const userToUpdate = patients_1.default.find(p => p.id === id);
+    if (!userToUpdate) {
+        throw new Error('That patient is not in the database!');
+    }
+    const newDiagnosisEntry = Object.assign({ id: uuid_1.v1() }, entry);
+    userToUpdate.entries.concat(newDiagnosisEntry);
+    return userToUpdate;
+};
+exports.default = { getDataPatient, getDataPatientNoSsn, addEntryPatient, addDiagnosisEntry };

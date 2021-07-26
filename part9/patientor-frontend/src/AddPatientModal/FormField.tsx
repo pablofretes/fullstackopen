@@ -9,6 +9,11 @@ export type GenderOption = {
   label: string;
 };
 
+export type EntryOptions = {
+  value: string;
+  label: string;
+};
+
 // props for select field component
 type SelectFieldProps = {
   name: string;
@@ -21,6 +26,29 @@ export const SelectField: React.FC<SelectFieldProps> = ({
   label,
   options
 }: SelectFieldProps) => (
+  <Form.Field>
+    <label>{label}</label>
+    <Field as="select" name={name} className="ui dropdown">
+      {options.map(option => (
+        <option key={option.value} value={option.value}>
+          {option.label || option.value}
+        </option>
+      ))}
+    </Field>
+  </Form.Field>
+);
+
+type SelectFieldPropsEntry = {
+  name: string;
+  label: string;
+  options: EntryOptions[];
+};
+
+export const SelectFieldEntry: React.FC<SelectFieldPropsEntry> = ({
+  name,
+  label,
+  options
+}: SelectFieldPropsEntry) => (
   <Form.Field>
     <label>{label}</label>
     <Field as="select" name={name} className="ui dropdown">

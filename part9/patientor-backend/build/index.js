@@ -12,10 +12,6 @@ app.use(express_1.default.json());
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 app.use(cors_1.default());
 const PORT = 3001;
-app.get('/ping', (_req, res) => {
-    console.log('piiiiiiiing');
-    res.send('pong');
-});
 app.use('/api/diagnoses', diagnosesRouter_1.default);
 app.use('/api/patients', patientsRouter_1.default);
 app.listen(PORT, () => {

@@ -1,6 +1,7 @@
 import express from 'express';
 import patientsEntries from '../../data/patients';
 import patientsService from "../services/patientsService";
+import { toNewDiagnosisEntry, toNewPatientEntry } from '../utils';
 const router = express.Router();
 
 router.get('/', (_req, res) => {
@@ -8,8 +9,14 @@ router.get('/', (_req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const newPatientEntry = patientsService.addEntryPatient(req.body);
-    res.json(newPatientEntry);
+    try{
+        const entry = toNewPatientEntry(req.body);
+        const newPatientEntry = patientsService.addEntryPatient(entry);
+        res.json(newPatientEntry);
+    } catch (e) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        res.status(400).send(e.message);
+    }
 });
 
 router.get('/:id', (req, res) => {
@@ -20,6 +27,18 @@ router.get('/:id', (req, res) => {
     }
 
     res.send(requestedPatient);
+});
+
+router.post('/:id/entries', (req, res) => {
+    try {
+        const id = req.params.id;
+        const entry = toNewDiagnosisEntry(req.body);
+        const newEntry = patientsService.addDiagnosisEntry(id, entry);
+        res.json(newEntry);
+    } catch (e) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        res.status(400).send(e.message);
+    }
 });
 
 export default router;

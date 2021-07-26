@@ -1,6 +1,7 @@
 import patientsData from '../../data/patients';
 import { Patients, noSsnPatients, NewPatient } from '../types/patient';
 import { v1 as uuid } from 'uuid';
+import { newEntry } from '../types/diagnose';
 
 const getDataPatient= (): Patients[] => { return patientsData;};
 
@@ -24,4 +25,17 @@ const addEntryPatient = (patient: NewPatient): Patients => {
     return newPatientEntry;
 };
 
-export default { getDataPatient, getDataPatientNoSsn, addEntryPatient };
+const addDiagnosisEntry = (id: string, entry: newEntry): Patients => {
+    const userToUpdate = patientsData.find(p => p.id === id);
+    if(!userToUpdate){
+        throw new Error('That patient is not in the database!');
+    }
+    const newDiagnosisEntry = {
+        id: uuid(),
+        ...entry
+    };
+    userToUpdate.entries.concat(newDiagnosisEntry);
+    return userToUpdate;
+};
+
+export default { getDataPatient, getDataPatientNoSsn, addEntryPatient, addDiagnosisEntry };

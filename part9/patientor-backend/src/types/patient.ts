@@ -12,7 +12,7 @@ export interface Patients {
     ssn?: string;
     gender: Gender;
     occupation: string;
-    entries?: Entry[];
+    entries: Entry[];
 }
 
 export type noSsnPatients = Omit<Patients, 'ssn'>;

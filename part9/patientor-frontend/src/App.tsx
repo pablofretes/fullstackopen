@@ -8,12 +8,11 @@ import { setDiagnosisListFromApi, setPatientListFromApi, useStateValue } from ".
 import { Diagnosis, Patient } from "./types";
 
 import PatientListPage from "./PatientListPage";
-import IndividualChild from "./components/IndividualChild";
+import IndividualChild from "./AddEntryModal/IndividualChild";
 
 const App: React.FC = () => {
   const [, dispatch] = useStateValue();
   React.useEffect(() => {
-    void axios.get<void>(`${apiBaseUrl}/ping`);
 
     const fetchPatientList = async () => {
       try {
@@ -43,7 +42,7 @@ const App: React.FC = () => {
           <Divider hidden />
           <Switch>
           <Route path="/api/patients/:id" render={() => <IndividualChild />}/>
-            <Route path="/" render={() => <PatientListPage />} />
+          <Route path="/" render={() => <PatientListPage />} />
           </Switch>
         </Container>
       </Router>

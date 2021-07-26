@@ -11,7 +11,7 @@ import { Gender, Patient } from "../types";
  */
 export type PatientFormValues = Omit<Patient, "id" | "entries">;
 
-interface Props {
+export interface Props {
   onSubmit: (values: PatientFormValues) => void;
   onCancel: () => void;
 }

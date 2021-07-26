@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon, Segment } from 'semantic-ui-react';
+import HealthRatingBar from '../components/HealthRatingBar';
 import { useStateValue } from '../state';
 import { Entry } from '../types';
 
@@ -43,6 +44,7 @@ const EntryDetails = ({ entry }: { entry: Entry }) => {
                     {entry.diagnosisCodes?.map(c => 
                         <li key={c}>{c} {Object.values(diagnoses).find(d => d.code === c)?.name}</li>
                     )}
+                    <HealthRatingBar showText={false} rating={entry.healthCheckRating}/>
                 </Segment>
             );
         default:
